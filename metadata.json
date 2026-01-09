@@ -1,0 +1,7 @@
+{
+  "name": "SNAPSHOTTypeGPT Playground",
+  "description": "A universal AI API playground optimized for TypeGPT models.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

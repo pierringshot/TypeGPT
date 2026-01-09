@@ -1,0 +1,37 @@
+
+<div class="flex h-screen w-full overflow-hidden bg-cyber-black text-gray-300 font-sans">
+  
+  <!-- Left Sidebar: Configuration -->
+  <aside class="w-[320px] h-full flex-shrink-0 z-30 flex flex-col border-r border-cyber-border shadow-[5px_0_30px_rgba(0,0,0,0.5)]">
+    <app-sidebar 
+      [(config)]="config"
+      (resetToDefaults)="resetState()"
+      (loadSaved)="loadState()"
+    ></app-sidebar>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 flex flex-col md:flex-row h-full overflow-hidden relative">
+    
+    <!-- Center: Chat / Message Builder -->
+    <section class="flex-1 h-1/2 md:h-full min-w-[350px] z-20 relative flex flex-col">
+      <app-chat 
+        [(messages)]="messages" 
+        [loading]="isLoading()"
+        [hasActiveTools]="config().tools.length > 0"
+        (runRequest)="handleRunRequest()"
+      ></app-chat>
+    </section>
+
+    <!-- Right: Output / Response -->
+    <section class="flex-1 h-1/2 md:h-full min-w-[350px] z-10 border-l border-cyber-border bg-cyber-black">
+      <app-output 
+        [data]="response()"
+        [loading]="isLoading()"
+        [error]="error()"
+        [latency]="latency()"
+      ></app-output>
+    </section>
+
+  </main>
+</div>
